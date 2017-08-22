@@ -11,10 +11,10 @@ PHP lexicology library.
 
 ## Core Lexical Comparisons
 
-- [levenshtein](http://php.net/manual/en/function.levenshtein.php)
-- [preg_grep](http://php.net/manual/en/function.preg_grep.php)
-- [similar_text](http://php.net/manual/en/function.similar_text.php)
-- [soundex](http://php.net/manual/en/function.sounded.php)
+- [levenshtein](http://php.net/manual/en/function.levenshtein.php) using `LevenshteinDistance`
+- [preg_grep](http://php.net/manual/en/function.preg_grep.php) using `PregGrep`
+- [similar_text](http://php.net/manual/en/function.similar_text.php) using `Similarity`
+- [soundex](http://php.net/manual/en/function.sounded.php) using `Soundex`
 
 Also allows custom lexical comparison by extending `Lexicology\Method\AbstractMethod` and implementing `Lexicology\Method\MethodInterface`. See [Custom Method](#custom-method)
 
