@@ -18,7 +18,7 @@ PHP lexicology library.
 - [similar_text](http://php.net/manual/en/function.similar_text.php) using `Similarity`
 - [soundex](http://php.net/manual/en/function.sounded.php) using `Soundex`
 
-Also allows custom lexical comparison by extending `Lexicology\Method\AbstractMethod` and implementing `Lexicology\Method\MethodInterface`. See [Custom Method](#custom-method)
+Also allows custom lexical comparison by extending `Celestial\Lexicology\Method\AbstractMethod` and implementing `Celestial\Lexicology\Method\MethodInterface`. See [Custom Method](#custom-method)
 
 ## Install
 
