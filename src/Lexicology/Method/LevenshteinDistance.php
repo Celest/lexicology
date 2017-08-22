@@ -3,15 +3,17 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method;
+namespace Celestial\Lexicology\Method;
 
-use Lexicology\Method\Interfaces\FilterInterface;
-use Lexicology\Method\Interfaces\RateInterface;
-use Lexicology\Method\Traits\ThresholdTrait;
+use Celestial\Lexicology\Method\Interfaces\FilterInterface;
+use Celestial\Lexicology\Method\Interfaces\SortInterface;
+use Celestial\Lexicology\Method\Traits\SortTrait;
+use Celestial\Lexicology\Method\Traits\ThresholdTrait;
 
-class LevenshteinDistance extends AbstractMethod implements RateInterface, FilterInterface
+class LevenshteinDistance extends AbstractMethod implements SortInterface, FilterInterface
 {
     use ThresholdTrait;
+    use SortTrait;
 
     public function __construct($field, $threshold = 5)
     {
@@ -19,13 +21,12 @@ class LevenshteinDistance extends AbstractMethod implements RateInterface, Filte
         parent::__construct($field);
     }
 
-
     /**
      * @param string $a
      * @param string $b
      * @return int|null
      */
-    public function rate($a, $b)
+    public function sortPair($a, $b)
     {
         $levenshteinA = levenshtein($a, $this->getField());
         $levenshteinB = levenshtein($b, $this->getField());

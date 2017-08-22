@@ -3,7 +3,7 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method;
+namespace Celestial\Lexicology\Method;
 
 /**
  * Class AbstractMethod

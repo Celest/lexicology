@@ -3,26 +3,29 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method;
+namespace Celestial\Lexicology\Method;
 
-use Lexicology\Method\Interfaces\FilterInterface;
-use Lexicology\Method\Interfaces\RateInterface;
+use Celestial\Lexicology\Method\Interfaces\FilterInterface;
+use Celestial\Lexicology\Method\Interfaces\SortInterface;
+use Celestial\Lexicology\Method\Traits\SortTrait;
 
-class PregGrep extends AbstractMethod implements RateInterface, FilterInterface
+class PregGrep extends AbstractMethod implements SortInterface, FilterInterface
 {
+    use SortTrait;
+
     /**
      * @param string $a
      * @param string $b
      * @return int|null
      */
-    public function rate($a, $b)
+    public function sortPair($a, $b)
     {
         $quotedField = preg_replace('/[\s\_]/', '.*', '~' . preg_quote($this->getField(), '~') . '~i');
 
         $pregMatchA = preg_match($quotedField, $a) === 1;
         $pregMatchB = preg_match($quotedField, $b) === 1;
 
-        if ($pregMatchA === $pregMatchB) {
+        if (true === $pregMatchA && $pregMatchA === $pregMatchB) {
             return 0;
         } else {
             if ($pregMatchA) {

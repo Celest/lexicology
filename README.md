@@ -5,7 +5,7 @@
 PHP lexicology library.
 
 - Suggests values from an array based on a lexical comparison
-- Return a 'rate' for sorting an array based on lexical comparison
+- Return sorted array based on lexical comparison
 - Pick best match from an array
 - Pick best match associations between arrays
 
@@ -18,15 +18,33 @@ PHP lexicology library.
 
 Also allows custom lexical comparison by extending `Lexicology\Method\AbstractMethod` and implementing `Lexicology\Method\MethodInterface`. See [Custom Method](#custom-method)
 
+## Install
+
+Composer
+```bash
+composer require celestial\lexicology
+```
+
+or composer.json
+```json
+{
+   "require": {
+       "celestial/lexicology": "^0.1"
+   }
+}
+
+```
+
+
 ## Use
 
 ### Suggestion
-The `Suggestion` class can suggest fields or values from an array that match closely to a needle value.
-The default method is [PregGrep](#PregGrep) but that can be changed to any of the other methods or a custom method.
+The `Suggestion` class will suggest an array or value that match closely to a needle.
+The default method is [PregGrep](#PregGrep) but that can be changed to one of the other methods or a custom method.
 ```php
 <?php
 
-  use Lexicology\Suggestion;
+  use Celestial\Lexicology\Suggestion;
   
   $suggestionOptions = [
     'string',  
@@ -36,7 +54,7 @@ The default method is [PregGrep](#PregGrep) but that can be changed to any of th
   ];
   
   $suggestion = new Suggestion();
-  $suggestions = $suggestion->suggestFields('string', $suggestionOptions);
+  $suggestions = $suggestion->getSuggestions('string', $suggestionOptions);
   
   print_r($suggestions);
   
@@ -47,23 +65,45 @@ The default method is [PregGrep](#PregGrep) but that can be changed to any of th
 //)
 ```
 
+Attempting to get a single 'best' suggestion value will return a string or throw an exception. If you need to suppress the exception and return a non-standard or shared value (such as a meta field or constant) use the fourth parameter to override the result.
+```php
+
+<?php
+
+  use Celestial\Lexicology\Suggestion;
+  
+  $suggestionOptions = [
+    'string',  
+    'new string',  
+    'value',  
+    'variable'  
+  ];
+  
+  $suggestion = new Suggestion();
+  $suggestions = $suggestion->getSingleSuggestion('string', $suggestionOptions);
+  
+  print_r($suggestions);
+``` 
+
 ### Custom Method
 A custom Method definition must implement either a `FilterInterface` or `RateInterface`
 
 ```php
 <?php
-  use Lexicology\Method\AbstractMethod;
-  use Lexicology\Method\Interfaces\FilterInterface;
-  use Lexicology\Method\Interfaces\RateInterface;
+  use Celestial\Lexicology\Method\AbstractMethod;
+  use Celestial\Lexicology\Method\Interfaces\FilterInterface;
+  use Celestial\Lexicology\Method\Interfaces\SortInterface;
   
-  class CustomMethod extends AbstractMethod implements RateInterface, FilterInterface
+  class CustomMethod extends AbstractMethod implements SortInterface, FilterInterface
   {
+      use \Celestial\Lexicology\Method\Traits\SortTrait;
+      
       /**
        * Return a sort value if either a or b match.
        * 
        * @inheritdoc 
        */
-      public function rate($a, $b) {
+      public function sortPair($a, $b) {
         if ($a === $b) {
             return 0;
         } elseif ($a === $this->getField()) {
@@ -88,13 +128,13 @@ A custom Method definition must implement either a `FilterInterface` or `RateInt
   }
 ```
 
-While this custom method doesn't do anything extraordinary, it's a basic example of the interfaces for a lecical method.
+While this custom method doesn't do anything extraordinary, it's a basic example of the interfaces for a lexical method.
 
 ```php
 <?php
 
 
-  use Lexicology\Suggestion;
+  use Celestial\Lexicology\Suggestion;
   use Lexicology\Test\Method\CustomMethod;
   
   $suggestionOptions = [
@@ -112,8 +152,9 @@ While this custom method doesn't do anything extraordinary, it's a basic example
   
 //Array
 //(
-//    [0] => string
-//    [1] => new string
-//    [3] => variable
+//    [0] => new string
+//    [1] => strings
+//    [2] => variable
+//    [3] => string
 //)
 ```

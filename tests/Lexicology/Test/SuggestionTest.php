@@ -5,8 +5,7 @@
 
 namespace Lexicology\Test;
 
-use Lexicology\Suggestion;
-use Lexicology\Test\Method\CustomMethod;
+use Celestial\Lexicology\Suggestion;
 use PHPUnit\Framework\TestCase;
 
 class SuggestionTest extends TestCase
@@ -14,14 +13,14 @@ class SuggestionTest extends TestCase
     /**
      * @var Suggestion
      */
-    public $comparison;
+    public $subject;
 
     public function setup()
     {
-        $this->comparison = new Suggestion();
+        $this->subject = new Suggestion();
     }
 
-    public function testSuggestFields()
+    public function testGetSuggestions()
     {
         $options = [
             "a",
@@ -34,11 +33,62 @@ class SuggestionTest extends TestCase
             "some random string"
         ];
         $this->assertEquals(['string', 'some random string'],
-            $this->comparison->suggestFields('string', $options)
+            $this->subject->getSuggestions('string', $options)
         );
     }
 
-    public function testSuggestFieldExample()
+    public function testGetSingleSuggestion()
+    {
+        $options = [
+            "a",
+            "s",
+            "st",
+            "stri",
+            "str",
+            "strin",
+            "string",
+            "some random string"
+        ];
+        $this->assertEquals(['string'],
+            $this->subject->getSingleSuggestion('string', $options)
+        );
+    }
+
+    public function testGetSingleOverrideSuggestion()
+    {
+        $options = [
+            "a",
+            "s"
+        ];
+        $this->assertEquals(['meta'],
+            $this->subject->getSingleSuggestion('string', $options, null, 'meta')
+        );
+    }
+
+    /**
+     * @expectedException Celestial\Lexicology\Exception\NoSuggestionException
+     */
+    public function testGetSingleExceptionSuggestion()
+    {
+        $options = [
+            "a",
+            "b"
+        ];
+        $this->subject->getSingleSuggestion('string', $options);
+    }
+
+    /**
+     * @expectedException Celestial\Lexicology\Exception\EmptyHaystackException
+     */
+    public function testGetExceptionSuggestion()
+    {
+        $options = [
+            "a"
+        ];
+        $this->subject->getSuggestions('string', $options);
+    }
+
+    public function testGetSuggestionsExample()
     {
         $suggestionOptions = [
             'string',
@@ -53,30 +103,7 @@ class SuggestionTest extends TestCase
         ];
 
         $suggestion = new Suggestion();
-        $suggestions = $suggestion->suggestFields('string', $suggestionOptions);
-
-        $this->assertEquals($expectedSuggestions, $suggestions);
-    }
-
-    public function testCustomSuggestFieldExample()
-    {
-        $suggestionOptions = [
-            'string',
-            'strings',
-            'new string',
-            'value',
-            'variable'
-        ];
-
-        $expectedSuggestions = [
-            'string',
-            'strings',
-            'new string',
-            'variable'
-        ];
-
-        $suggestion = new Suggestion();
-        $suggestions = $suggestion->suggestFields('string', $suggestionOptions, CustomMethod::class);
+        $suggestions = $suggestion->getSuggestions('string', $suggestionOptions);
 
         $this->assertEquals($expectedSuggestions, $suggestions);
     }

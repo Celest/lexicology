@@ -3,15 +3,17 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method;
+namespace Celestial\Lexicology\Method;
 
-use Lexicology\Method\Interfaces\FilterInterface;
-use Lexicology\Method\Interfaces\RateInterface;
-use Lexicology\Method\Traits\ThresholdTrait;
+use Celestial\Lexicology\Method\Interfaces\FilterInterface;
+use Celestial\Lexicology\Method\Interfaces\SortInterface;
+use Celestial\Lexicology\Method\Traits\SortTrait;
+use Celestial\Lexicology\Method\Traits\ThresholdTrait;
 
-class Similarity extends AbstractMethod implements RateInterface, FilterInterface
+class Similarity extends AbstractMethod implements SortInterface, FilterInterface
 {
     use ThresholdTrait;
+    use SortTrait;
 
     /**
      * Similarity constructor.
@@ -29,7 +31,7 @@ class Similarity extends AbstractMethod implements RateInterface, FilterInterfac
      * @param string $b
      * @return int|null
      */
-    public function rate($a, $b)
+    public function sortPair($a, $b)
     {
         similar_text($a, $this->getField(), $percentA);
         similar_text($b, $this->getField(), $percentB);

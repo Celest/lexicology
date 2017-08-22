@@ -5,22 +5,21 @@
 
 namespace Lexicology\Test\Method;
 
-use Lexicology\Method\Similarity;
+use Celestial\Lexicology\Method\Similarity;
 use PHPUnit\Framework\TestCase;
 
 class SimilarityTest extends TestCase
 {
 
-    public function testRateSimilarity()
+    public function testSortPairSimilarity()
     {
         $similarity = new Similarity('string');
-        $this->assertEquals(0, $similarity->rate('string', 'string'));
-        $this->assertEquals(1, $similarity->rate('stri', 'string'));
-        $this->assertEquals(-1, $similarity->rate('string', 'stri'));
-        $this->assertEquals(0, $similarity->rate('s', 's'));
-        $this->assertEquals(0, $similarity->rate('a', 'b'));
+        $this->assertEquals(0, $similarity->sortPair('string', 'string'));
+        $this->assertEquals(1, $similarity->sortPair('stri', 'string'));
+        $this->assertEquals(-1, $similarity->sortPair('string', 'stri'));
+        $this->assertEquals(0, $similarity->sortPair('s', 's'));
+        $this->assertEquals(0, $similarity->sortPair('a', 'b'));
     }
-
 
     public function testFilterSimilarity()
     {
@@ -44,5 +43,4 @@ class SimilarityTest extends TestCase
         $similarity = new Similarity('string');
         $this->assertEquals($expected, $similarity->filter($options));
     }
-
 }

@@ -3,7 +3,7 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method\Interfaces;
+namespace Celestial\Lexicology\Method\Interfaces;
 
 /**
  * Interface FilterInterface

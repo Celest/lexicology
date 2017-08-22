@@ -5,12 +5,20 @@
 
 namespace Lexicology\Test\Method;
 
-use Lexicology\Method\PregGrep;
+use Celestial\Lexicology\Method\PregGrep;
 use PHPUnit\Framework\TestCase;
 
 class PregGrepTest extends TestCase
 {
-
+    public function testSortPairSimilarity()
+    {
+        $similarity = new PregGrep('string');
+        $this->assertEquals(0, $similarity->sortPair('string', 'string'));
+        $this->assertEquals(-1, $similarity->sortPair('stri', 'string'));
+        $this->assertEquals(1, $similarity->sortPair('string', 'stri'));
+        $this->assertNull($similarity->sortPair('s', 's'));
+        $this->assertNull($similarity->sortPair('a', 'b'));
+    }
 
     public function testPregMatchFields()
     {

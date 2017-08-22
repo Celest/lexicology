@@ -3,7 +3,7 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method\Traits;
+namespace Celestial\Lexicology\Method\Traits;
 
 
 trait ThresholdTrait

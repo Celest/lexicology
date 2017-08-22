@@ -3,13 +3,16 @@
  * @author Jon West
  */
 
-namespace Lexicology\Method;
+namespace Celestial\Lexicology\Method;
 
-use Lexicology\Method\Interfaces\FilterInterface;
-use Lexicology\Method\Interfaces\RateInterface;
+use Celestial\Lexicology\Method\Interfaces\FilterInterface;
+use Celestial\Lexicology\Method\Interfaces\SortInterface;
+use Celestial\Lexicology\Method\Traits\SortTrait;
 
-class Soundex extends AbstractMethod implements RateInterface, FilterInterface
+class Soundex extends AbstractMethod implements SortInterface, FilterInterface
 {
+    use SortTrait;
+
     protected $soundex;
 
     public function setField($field)
@@ -23,7 +26,7 @@ class Soundex extends AbstractMethod implements RateInterface, FilterInterface
      * @param string $b
      * @return int|null
      */
-    public function rate($a, $b)
+    public function sortPair($a, $b)
     {
         $soundexA = soundex($a);
         $soundexB = soundex($b);

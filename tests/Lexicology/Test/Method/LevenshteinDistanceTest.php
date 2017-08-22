@@ -5,19 +5,19 @@
 
 namespace Lexicology\Test\Method;
 
-use Lexicology\Method\LevenshteinDistance;
+use Celestial\Lexicology\Method\LevenshteinDistance;
 use PHPUnit\Framework\TestCase;
 
 class LevenshteinDistanceTest extends TestCase
 {
-    public function testRateLevenshteinDistance()
+    public function testSortPairLevenshteinDistance()
     {
         $levenshtein = new LevenshteinDistance('string');
-        $this->assertEquals(0, $levenshtein->rate('string', 'string'));
-        $this->assertEquals(1, $levenshtein->rate('stri', 'string'));
-        $this->assertEquals(-1, $levenshtein->rate('string', 'stri'));
-        $this->assertEquals(0, $levenshtein->rate('s', 's'));
-        $this->assertEquals(0, $levenshtein->rate('a', 'b'));
+        $this->assertEquals(0, $levenshtein->sortPair('string', 'string'));
+        $this->assertEquals(1, $levenshtein->sortPair('stri', 'string'));
+        $this->assertEquals(-1, $levenshtein->sortPair('string', 'stri'));
+        $this->assertEquals(0, $levenshtein->sortPair('s', 's'));
+        $this->assertEquals(0, $levenshtein->sortPair('a', 'b'));
     }
 
     public function testFilterLevenshteinDistance()

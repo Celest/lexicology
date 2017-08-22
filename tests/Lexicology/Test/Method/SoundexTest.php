@@ -5,22 +5,22 @@
 
 namespace Lexicology\Test\Method;
 
-use Lexicology\Method\Soundex;
+use Celestial\Lexicology\Method\Soundex;
 use PHPUnit\Framework\TestCase;
 
 class SoundexTest extends TestCase
 {
-    public function testRateSoundex()
+    public function testSortPairSoundex()
     {
         $soundex = new Soundex('string');
-        $this->assertEquals(0, $soundex->rate('string', 'string'));
-        $this->assertEquals(1, $soundex->rate('stri', 'string'));
-        $this->assertEquals(-1, $soundex->rate('string', 'stri'));
-        $this->assertEquals(0, $soundex->rate('s', 's'));
+        $this->assertEquals(0, $soundex->sortPair('string', 'string'));
+        $this->assertEquals(1, $soundex->sortPair('stri', 'string'));
+        $this->assertEquals(-1, $soundex->sortPair('string', 'stri'));
+        $this->assertEquals(0, $soundex->sortPair('s', 's'));
 
-        $this->assertNull($soundex->rate('a', 's'));
-        $this->assertNull($soundex->rate('a', 'b'));
-        $this->assertNull($soundex->rate('a', 'c'));
+        $this->assertNull($soundex->sortPair('a', 's'));
+        $this->assertNull($soundex->sortPair('a', 'b'));
+        $this->assertNull($soundex->sortPair('a', 'c'));
     }
 
     public function testFilterSoundex()
