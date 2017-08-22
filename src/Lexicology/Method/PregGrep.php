@@ -13,7 +13,7 @@ class PregGrep extends AbstractMethod implements MethodInterface
      * @param string $b
      * @return int|null
      */
-    public function rate(string $a, string $b):? int
+    public function rate($a, $b)
     {
         $quotedField = preg_replace('/[\s\_]/', '.*', '~' . preg_quote($this->getField(), '~') . '~i');
 
@@ -36,7 +36,7 @@ class PregGrep extends AbstractMethod implements MethodInterface
      * @param array $possibleValues
      * @return array
      */
-    public function filter(array $possibleValues): array
+    public function filter($possibleValues)
     {
         $quotedValue = preg_replace('/[\s\_]/', '.*', '~' . preg_quote($this->getField(), '~') . '~i');
         return array_values(preg_grep($quotedValue, $possibleValues));

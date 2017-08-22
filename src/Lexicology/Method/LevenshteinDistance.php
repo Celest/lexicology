@@ -24,7 +24,7 @@ class LevenshteinDistance extends AbstractMethod implements MethodInterface
      * @param string $b
      * @return int|null
      */
-    public function rate(string $a, string $b):? int
+    public function rate($a, $b)
     {
         $levenshteinA = levenshtein($a, $this->getField());
         $levenshteinB = levenshtein($b, $this->getField());
@@ -39,7 +39,7 @@ class LevenshteinDistance extends AbstractMethod implements MethodInterface
      * @param array $possibleValues
      * @return array
      */
-    public function filter(array $possibleValues): array
+    public function filter($possibleValues)
     {
         $threshold = $this->getThreshold();
         $field = $this->getField();

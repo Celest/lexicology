@@ -10,6 +10,13 @@ use Lexicology\Method\PregGrep;
 
 class Suggestion
 {
+    /**
+     * @param $field
+     * @param $haystack
+     * @param MethodInterface|null $method
+     * @return array
+     * @throws \Exception
+     */
     public function suggestFields($field, $haystack, MethodInterface $method = null)
     {
         if($method === null) {

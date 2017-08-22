@@ -17,7 +17,7 @@ class Similarity extends AbstractMethod implements MethodInterface
      * @param string $field
      * @param float $threshold
      */
-    public function __construct(string $field, float $threshold = 0.9)
+    public function __construct($field, $threshold = 0.9)
     {
         $this->setThreshold($threshold);
         parent::__construct($field);
@@ -28,7 +28,7 @@ class Similarity extends AbstractMethod implements MethodInterface
      * @param string $b
      * @return int|null
      */
-    public function rate(string $a, string $b):? int
+    public function rate($a, $b)
     {
         similar_text($a, $this->getField(), $percentA);
         similar_text($b, $this->getField(), $percentB);
@@ -42,7 +42,7 @@ class Similarity extends AbstractMethod implements MethodInterface
      * @param array $possibleValues
      * @return array
      */
-    public function filter(array $possibleValues): array
+    public function filter($possibleValues)
     {
         $field = $this->getField();
         $threshold = $this->getThreshold();

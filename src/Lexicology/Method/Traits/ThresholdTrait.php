@@ -13,7 +13,7 @@ trait ThresholdTrait
     /**
      * @return float
      */
-    public function getThreshold(): float
+    public function getThreshold()
     {
         return $this->threshold;
     }
@@ -22,7 +22,7 @@ trait ThresholdTrait
      * @param float $threshold
      * @return $this
      */
-    public function setThreshold(float $threshold)
+    public function setThreshold($threshold)
     {
         $this->threshold = $threshold;
         return $this;

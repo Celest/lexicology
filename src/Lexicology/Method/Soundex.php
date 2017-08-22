@@ -10,7 +10,7 @@ class Soundex extends AbstractMethod implements MethodInterface
 {
     protected $soundex;
 
-    public function setField(string $field)
+    public function setField($field)
     {
         $this->soundex = soundex($field);
         return parent::setField($field);
@@ -21,7 +21,7 @@ class Soundex extends AbstractMethod implements MethodInterface
      * @param string $b
      * @return int|null
      */
-    public function rate(string $a, string $b):? int
+    public function rate($a, $b)
     {
         $soundexA = soundex($a);
         $soundexB = soundex($b);
@@ -40,7 +40,7 @@ class Soundex extends AbstractMethod implements MethodInterface
      * @param array $possibleValues
      * @return array
      */
-    public function filter(array $possibleValues): array
+    public function filter($possibleValues)
     {
         $soundexField = $this->soundex;
         return array_values(array_filter($possibleValues,

@@ -29,7 +29,7 @@ abstract class AbstractMethod
      * @param string $field
      * @return $this
      */
-    public function setField(string $field)
+    public function setField($field)
     {
         $this->field = $field;
         return $this;
@@ -38,7 +38,7 @@ abstract class AbstractMethod
     /**
      * @return string
      */
-    public function getField(): string
+    public function getField()
     {
         return $this->field;
     }
