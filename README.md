@@ -4,6 +4,8 @@
 
 PHP lexicology library.
 
+> While we only test PHP 7+, this library does work with PHP 5.x. PHP Sorting methods changed how they deal with equal sort values in 7+ - so suggestion arrays will differ.
+
 - Suggests values from an array based on a lexical comparison
 - Return sorted array based on lexical comparison
 - Pick best match from an array

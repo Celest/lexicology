@@ -1,7 +1,6 @@
 {
   "name": "celestial/lexicology",
   "description": "PHP Lexicology library.",
-  "version": "0.0.3",
   "keywords": [
     "lexicon",
     "lexicology",
