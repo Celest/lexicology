@@ -5,8 +5,10 @@
 
 namespace Lexicology\Method;
 
+use Lexicology\Method\Interfaces\FilterInterface;
+use Lexicology\Method\Interfaces\RateInterface;
 
-class PregGrep extends AbstractMethod implements MethodInterface
+class PregGrep extends AbstractMethod implements RateInterface, FilterInterface
 {
     /**
      * @param string $a

@@ -5,8 +5,10 @@
 
 namespace Lexicology\Method;
 
+use Lexicology\Method\Interfaces\FilterInterface;
+use Lexicology\Method\Interfaces\RateInterface;
 
-class Soundex extends AbstractMethod implements MethodInterface
+class Soundex extends AbstractMethod implements RateInterface, FilterInterface
 {
     protected $soundex;
 

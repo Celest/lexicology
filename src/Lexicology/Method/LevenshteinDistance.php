@@ -5,10 +5,11 @@
 
 namespace Lexicology\Method;
 
-
+use Lexicology\Method\Interfaces\FilterInterface;
+use Lexicology\Method\Interfaces\RateInterface;
 use Lexicology\Method\Traits\ThresholdTrait;
 
-class LevenshteinDistance extends AbstractMethod implements MethodInterface
+class LevenshteinDistance extends AbstractMethod implements RateInterface, FilterInterface
 {
     use ThresholdTrait;
 

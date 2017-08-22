@@ -1,7 +1,7 @@
 {
   "name": "celest/lexicology",
   "description": "PHP Lexicology library.",
-  "version": "1.0.0-ALPHA",
+  "version": "0.0.1",
   "keywords": [
     "lexicon",
     "lexicology",
