@@ -1,16 +1,21 @@
 {
   "name": "celest/lexicology",
-  "description": "PHP Lexicology comparison library.",
-  "version": "1.0.0",
+  "description": "PHP Lexicology library.",
+  "version": "1.0.0-ALPHA",
   "keywords": [
     "lexicon",
     "lexicology",
     "word",
-    "comparison"
+    "levenshtein",
+    "similar",
+    "grep",
+    "soundex",
+    "comparison",
+    "filter"
   ],
   "type": "library",
   "require-dev": {
-    "phpunit/phpunit": "^6.3"
+    "phpunit/phpunit": "^5.7"
   },
   "license": "Apache-2.0",
   "authors": [
