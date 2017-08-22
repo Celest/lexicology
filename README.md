@@ -81,9 +81,19 @@ Attempting to get a single 'best' suggestion value will return a string or throw
   
   $suggestion = new Suggestion();
   $suggestions = $suggestion->getSingleSuggestion('string', $suggestionOptions);
-  
   print_r($suggestions);
-``` 
+    // ['string']
+```
+
+Supressing an exception:
+```php
+<?php
+    use Celestial\Lexicology\Suggestion;
+    $suggestion = new Suggestion();
+    $suggestions = $suggestion->getSingleSuggestion('string',[], null, 'meta');
+    print_r($suggestions);
+    // ['meta']
+```
 
 ### Custom Method
 A custom Method definition must implement either a `FilterInterface` or `RateInterface`
@@ -146,7 +156,7 @@ While this custom method doesn't do anything extraordinary, it's a basic example
   ];
   
   $suggestion = new Suggestion();
-  $suggestions = $suggestion->suggestFields('string', $suggestionOptions, CustomMethod::class);
+  $suggestions = $suggestion->getSuggestions('string', $suggestionOptions, CustomMethod::class);
   
   print_r($suggestions);
   
